@@ -1,0 +1,1045 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Le Boost Protéiné Végétal - Ebook Nutrition Sportive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2D5A27", // Forest Green
+              secondary: "#F9F7F2", // Linen Beige
+              accent: "#1A1A1A", // Charcoal
+              success: "#8FB339", // Tender Green
+              surface: "#FFFFFF",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Custom Styles for Chart Containers to meet strict requirements */
+      .chart-container-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 500px; /* Constraint width */
+        margin: 0 auto; /* Center horizontally */
+        height: 350px; /* Fixed responsive height */
+        max-height: 400px;
+      }
+
+      body {
+        background-color: #f9f7f2;
+        color: #1a1a1a;
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .active-tab {
+        background-color: #2d5a27;
+        color: #ffffff;
+        border-color: #2d5a27;
+      }
+
+      .inactive-tab {
+        background-color: transparent;
+        color: #2d5a27;
+        border-color: #2d5a27;
+      }
+    </style>
+  </head>
+  <body class="antialiased">
+    <!-- Chosen Palette: Nature & Confidence (Forest Green #2D5A27, Linen Beige #F9F7F2, Charcoal #1A1A1A) -->
+
+    <!-- Application Structure Plan: 
+         1. Hero Section: Immediate value proposition and CTA.
+         2. Interactive Problem Solver: Toggles to explore user pain points (Fatigue, Monotony, Doubt).
+         3. The Solution: Introduction to the Ebook.
+         4. Dynamic Recipe Preview: A functional dashboard allowing users to select sample recipes and view real-time nutritional breakdowns using Chart.js. This proves the "High Protein" claim with data.
+         5. Benefits Grid: Digestible key selling points.
+         6. Testimonial Slider: Social proof rotation.
+         7. Audience Filter: Interactive checklist.
+         8. FAQ Accordion: Objection handling.
+         9. Sticky Mobile CTA for conversion optimization.
+    -->
+
+    <!-- Visualization & Content Choices:
+         - Recipe Macro Visualizer (Chart.js): 
+           Goal: Prove the "High Protein" claim.
+           Method: Doughnut chart showing Protein/Carb/Fat split.
+           Interaction: Clicking recipe buttons updates the chart and context text.
+           Justification: Visual proof is more convincing than a text list of macros for skeptics.
+         - Problem/Solution Toggles:
+           Goal: Empathy and engagement.
+           Method: Tabbed interface.
+           Interaction: Switch views to see detailed pain points.
+    -->
+
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full bg-[#F9F7F2]/90 backdrop-blur-md z-50 border-b border-[#2D5A27]/10"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="font-serif text-xl font-bold text-primary tracking-wide">
+          Boost Végétal
+        </div>
+        <div class="hidden md:flex space-x-8 text-sm font-semibold text-accent">
+          <a href="#problemes" class="hover:text-primary transition"
+            >Problèmes</a
+          >
+          <a href="#apercu" class="hover:text-primary transition"
+            >Recettes & Macros</a
+          >
+          <a href="#temoignages" class="hover:text-primary transition"
+            >Témoignages</a
+          >
+        </div>
+        <a
+          href="#offre"
+          class="bg-primary text-white px-5 py-2 rounded-full font-semibold hover:bg-[#1e3c1a] transition text-sm shadow-lg"
+          >Acheter l'Ebook</a
+        >
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="pt-32 pb-20 px-6 md:px-12 lg:px-24">
+      <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div
+            class="inline-block bg-success/20 text-primary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+          >
+            Nouveau • Edition 2025
+          </div>
+          <h1
+            class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-accent"
+          >
+            Ne faites plus de compromis entre vos
+            <span class="text-primary">convictions</span> et vos
+            <span class="text-primary">performances</span>.
+          </h1>
+          <p class="text-lg text-gray-600 leading-relaxed max-w-lg">
+            Découvrez 45 recettes végétales gourmandes, optimisées pour le sport
+            et validées par des nutritionnistes. Finie la carence, bonjour
+            l'énergie.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 pt-4">
+            <a
+              href="#offre"
+              class="bg-primary text-white text-center px-8 py-4 rounded-lg font-bold text-lg shadow-xl hover:bg-[#1e3c1a] hover:translate-y-[-2px] transition duration-300"
+            >
+              Télécharger maintenant
+            </a>
+            <div
+              class="flex items-center justify-center space-x-2 text-sm text-gray-500"
+            >
+              <span class="text-xl">🔒</span>
+              <span>Paiement Sécurisé & Accès Immédiat</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Abstract Visual Representation of the Book/Content -->
+        <div
+          class="relative bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 rotate-2 hover:rotate-0 transition duration-500"
+        >
+          <div
+            class="absolute top-0 right-0 bg-success text-white font-bold px-4 py-2 rounded-bl-xl rounded-tr-xl shadow-md"
+          >
+            -40% Aujourd'hui
+          </div>
+          <div
+            class="bg-gray-100 h-64 md:h-80 rounded-lg flex items-center justify-center mb-6 overflow-hidden relative group"
+          >
+            <!-- Placeholder for Food Image context -->
+            <div class="text-center p-6">
+              <div class="text-6xl mb-4">🥗</div>
+              <p class="font-serif text-xl italic text-gray-400">
+                Couverture Ebook 3D
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-between items-end">
+            <div>
+              <p
+                class="text-sm text-gray-500 uppercase tracking-widest font-semibold"
+              >
+                Format PDF • 120 Pages
+              </p>
+              <h3 class="font-serif text-2xl font-bold text-accent mt-1">
+                Le Boost Protéiné
+              </h3>
+            </div>
+            <div class="text-right">
+              <p class="text-gray-400 line-through text-sm">49€</p>
+              <p class="text-3xl font-bold text-primary">29€</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Interactive Problem Section -->
+    <section id="problemes" class="py-20 bg-white">
+      <div class="container mx-auto px-6 max-w-5xl">
+        <div class="text-center mb-16">
+          <h2
+            class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4"
+          >
+            Marre d'entendre que les protéines végétales ne suffisent pas ?
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Explorez les défis courants de la nutrition végétale sportive.
+            Cliquez sur les onglets pour voir comment nous y répondons.
+          </p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <button
+            onclick="updateProblem('fatigue')"
+            id="btn-fatigue"
+            class="problem-btn active-tab px-6 py-3 rounded-full border-2 font-semibold transition duration-300"
+          >
+            La Fatigue
+          </button>
+          <button
+            onclick="updateProblem('monotonie')"
+            id="btn-monotonie"
+            class="problem-btn inactive-tab px-6 py-3 rounded-full border-2 font-semibold transition duration-300"
+          >
+            La Monotonie
+          </button>
+          <button
+            onclick="updateProblem('doute')"
+            id="btn-doute"
+            class="problem-btn inactive-tab px-6 py-3 rounded-full border-2 font-semibold transition duration-300"
+          >
+            Le Doute
+          </button>
+        </div>
+
+        <!-- Dynamic Content Area -->
+        <div
+          id="problem-content"
+          class="bg-[#F9F7F2] rounded-2xl p-8 md:p-12 shadow-inner border border-primary/10 transition-all duration-300"
+        >
+          <!-- Content injected by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- The Solution -->
+    <section class="py-20 bg-primary text-white">
+      <div
+        class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"
+      >
+        <div>
+          <h2 class="font-serif text-3xl md:text-4xl font-bold mb-6">
+            Le Boost Protéiné Végétal : Votre nouvel allié cuisine.
+          </h2>
+          <p class="text-green-100 text-lg mb-6 leading-relaxed">
+            Ce n'est pas juste un livre de recettes. C'est une méthodologie
+            complète pour structurer votre assiette. Nous avons décomposé la
+            science de la nutrition sportive pour la rendre délicieuse et
+            accessible.
+          </p>
+          <ul class="space-y-4">
+            <li class="flex items-start">
+              <span class="text-success mr-3 text-xl">✓</span>
+              <span
+                ><strong>Énergie stable :</strong> Des indices glycémiques
+                maîtrisés pour éviter les coups de barre.</span
+              >
+            </li>
+            <li class="flex items-start">
+              <span class="text-success mr-3 text-xl">✓</span>
+              <span
+                ><strong>Récupération :</strong> Profils d'acides aminés
+                complets pour vos muscles.</span
+              >
+            </li>
+            <li class="flex items-start">
+              <span class="text-success mr-3 text-xl">✓</span>
+              <span
+                ><strong>Rapidité :</strong> 80% des recettes prêtes en moins de
+                25 minutes.</span
+              >
+            </li>
+          </ul>
+        </div>
+        <div
+          class="bg-white/10 p-8 rounded-xl backdrop-blur-sm border border-white/20"
+        >
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="p-4 bg-primary/50 rounded-lg">
+              <div class="text-3xl font-bold text-success mb-1">45</div>
+              <div class="text-xs uppercase tracking-wide opacity-80">
+                Recettes
+              </div>
+            </div>
+            <div class="p-4 bg-primary/50 rounded-lg">
+              <div class="text-3xl font-bold text-success mb-1">100%</div>
+              <div class="text-xs uppercase tracking-wide opacity-80">
+                Végétal
+              </div>
+            </div>
+            <div class="p-4 bg-primary/50 rounded-lg">
+              <div class="text-3xl font-bold text-success mb-1">25g+</div>
+              <div class="text-xs uppercase tracking-wide opacity-80">
+                Protéines/Repas
+              </div>
+            </div>
+            <div class="p-4 bg-primary/50 rounded-lg">
+              <div class="text-3xl font-bold text-success mb-1">∞</div>
+              <div class="text-xs uppercase tracking-wide opacity-80">
+                Variété
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dynamic Recipe Preview (Data Viz Section) -->
+    <section id="apercu" class="py-24 bg-secondary">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2
+            class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4"
+          >
+            La preuve par les chiffres
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Vous doutez des apports ? Sélectionnez une recette type de l'ebook
+            pour visualiser sa composition nutritionnelle exacte. Transparence
+            totale.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- Recipe Selector List -->
+          <div class="lg:col-span-1 space-y-4">
+            <h3
+              class="font-bold text-gray-500 uppercase text-xs tracking-widest mb-4"
+            >
+              Exemples de Recettes
+            </h3>
+            <button
+              onclick="loadRecipeData(0)"
+              class="recipe-selector w-full text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border-l-4 border-transparent hover:border-primary transition group active-recipe"
+              id="recipe-0"
+            >
+              <div class="flex justify-between items-center">
+                <span
+                  class="font-serif font-bold text-lg text-accent group-hover:text-primary"
+                  >Chili au Tempeh Fumé</span
+                >
+                <span class="text-xl">🍲</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Riche et réconfortant</p>
+            </button>
+
+            <button
+              onclick="loadRecipeData(1)"
+              class="recipe-selector w-full text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border-l-4 border-transparent hover:border-primary transition group"
+              id="recipe-1"
+            >
+              <div class="flex justify-between items-center">
+                <span
+                  class="font-serif font-bold text-lg text-accent group-hover:text-primary"
+                  >Pancakes Pois Chiches</span
+                >
+                <span class="text-xl">🥞</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Petit-dej de champion</p>
+            </button>
+
+            <button
+              onclick="loadRecipeData(2)"
+              class="recipe-selector w-full text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border-l-4 border-transparent hover:border-primary transition group"
+              id="recipe-2"
+            >
+              <div class="flex justify-between items-center">
+                <span
+                  class="font-serif font-bold text-lg text-accent group-hover:text-primary"
+                  >Super Bowl Quinoa</span
+                >
+                <span class="text-xl">🥗</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Fraîcheur & Protéines</p>
+            </button>
+          </div>
+
+          <!-- Data Visualization Area -->
+          <div
+            class="lg:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center border border-gray-100"
+          >
+            <!-- Stats Text -->
+            <div class="flex-1 space-y-6 w-full">
+              <div>
+                <h3
+                  id="recipe-title"
+                  class="font-serif text-3xl font-bold text-primary mb-2"
+                >
+                  Chili au Tempeh Fumé
+                </h3>
+                <p
+                  id="recipe-desc"
+                  class="text-gray-600 text-sm leading-relaxed"
+                >
+                  Un plat mijoté riche en saveurs fumées. Le tempeh offre une
+                  texture ferme et un profil d'acides aminés complet, idéal pour
+                  la récupération musculaire post-séance.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div class="text-xs text-gray-500 uppercase font-semibold">
+                    Protéines
+                  </div>
+                  <div id="val-protein" class="text-2xl font-bold text-primary">
+                    35g
+                  </div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div class="text-xs text-gray-500 uppercase font-semibold">
+                    Calories
+                  </div>
+                  <div id="val-cals" class="text-2xl font-bold text-accent">
+                    520
+                  </div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div class="text-xs text-gray-500 uppercase font-semibold">
+                    Glucides
+                  </div>
+                  <div id="val-carbs" class="text-2xl font-bold text-gray-700">
+                    45g
+                  </div>
+                </div>
+                <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div class="text-xs text-gray-500 uppercase font-semibold">
+                    Lipides
+                  </div>
+                  <div id="val-fat" class="text-2xl font-bold text-gray-700">
+                    15g
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="flex items-center text-sm text-gray-500 bg-secondary px-3 py-2 rounded-lg"
+              >
+                <span class="mr-2">⏱️</span>
+                <span id="recipe-time">Préparation: 25 min</span>
+              </div>
+            </div>
+
+            <!-- Chart JS Container -->
+            <div
+              class="w-full md:w-1/2 flex flex-col items-center justify-center"
+            >
+              <div class="chart-container-wrapper">
+                <canvas id="macroChart"></canvas>
+              </div>
+              <p class="text-xs text-gray-400 mt-4 text-center">
+                Répartition calorique approximative
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Target Audience (Filtrage) -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+          <!-- For You -->
+          <div class="bg-[#F9F7F2] p-8 rounded-2xl border-l-4 border-primary">
+            <h3 class="font-serif text-2xl font-bold text-primary mb-6">
+              C'est pour vous si...
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="text-primary font-bold mr-3">✓</span>
+                <span class="text-gray-700"
+                  >Vous cherchez à prendre du muscle sans viande.</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-primary font-bold mr-3">✓</span>
+                <span class="text-gray-700"
+                  >Vous manquez d'inspiration en cuisine végétale.</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-primary font-bold mr-3">✓</span>
+                <span class="text-gray-700"
+                  >Vous voulez des repas sains prêts rapidement.</span
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Not For You -->
+          <div class="bg-gray-50 p-8 rounded-2xl border-l-4 border-gray-300">
+            <h3 class="font-serif text-2xl font-bold text-gray-500 mb-6">
+              Ce n'est PAS pour vous si...
+            </h3>
+            <ul class="space-y-4">
+              <li class="flex items-start">
+                <span class="text-gray-400 font-bold mr-3">✕</span>
+                <span class="text-gray-500"
+                  >Vous cherchez des pilules magiques sans cuisiner.</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-gray-400 font-bold mr-3">✕</span>
+                <span class="text-gray-500"
+                  >Vous ne jurez que par la viande rouge à chaque repas.</span
+                >
+              </li>
+              <li class="flex items-start">
+                <span class="text-gray-400 font-bold mr-3">✕</span>
+                <span class="text-gray-500"
+                  >Vous n'êtes pas prêt à tester de nouvelles saveurs.</span
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Slider -->
+    <section
+      id="temoignages"
+      class="py-20 bg-primary/5 border-y border-primary/10"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="font-serif text-3xl font-bold text-accent mb-12">
+          Ils l'ont adopté
+        </h2>
+
+        <div
+          class="relative max-w-3xl mx-auto bg-white p-10 rounded-2xl shadow-lg"
+        >
+          <div
+            class="text-6xl text-primary/20 absolute top-4 left-6 font-serif"
+          >
+            "
+          </div>
+          <div
+            id="testimonial-container"
+            class="min-h-[160px] flex flex-col justify-center items-center fade-in"
+          >
+            <!-- JS Injected -->
+          </div>
+
+          <!-- Controls -->
+          <div class="flex justify-center gap-4 mt-8">
+            <button
+              onclick="prevTestimonial()"
+              class="p-2 rounded-full hover:bg-gray-100 transition"
+            >
+              ←
+            </button>
+            <div class="flex gap-2 items-center" id="testimonial-dots">
+              <!-- Dots injected -->
+            </div>
+            <button
+              onclick="nextTestimonial()"
+              class="p-2 rounded-full hover:bg-gray-100 transition"
+            >
+              →
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Authority / Credibility -->
+    <section class="py-16 bg-white text-center">
+      <div class="container mx-auto px-6">
+        <h2 class="font-serif text-2xl font-bold text-accent mb-8">
+          Une approche basée sur la science
+        </h2>
+        <div
+          class="flex flex-wrap justify-center gap-8 md:gap-16 items-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition duration-500"
+        >
+          <div class="flex flex-col items-center">
+            <span class="text-4xl mb-2">🎓</span>
+            <span class="font-bold text-sm">Validé Nutritionnistes</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-4xl mb-2">📚</span>
+            <span class="font-bold text-sm">Sources Scientifiques</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-4xl mb-2">🏋️</span>
+            <span class="font-bold text-sm">Testé par Athlètes</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-[#F9F7F2]">
+      <div class="container mx-auto px-6 max-w-3xl">
+        <h2 class="font-serif text-3xl font-bold text-center text-accent mb-12">
+          Questions Fréquentes
+        </h2>
+
+        <div class="space-y-4">
+          <details
+            class="bg-white p-6 rounded-lg shadow-sm group cursor-pointer"
+          >
+            <summary
+              class="flex justify-between items-center font-semibold text-lg list-none text-accent"
+            >
+              Est-ce adapté aux débutants en cuisine ?
+              <span class="transition group-open:rotate-180">▼</span>
+            </summary>
+            <p class="text-gray-600 mt-4 leading-relaxed">
+              Absolument. Aucune technique complexe n'est requise. Si vous savez
+              couper des légumes et allumer un feu, vous pouvez réaliser toutes
+              les recettes.
+            </p>
+          </details>
+
+          <details
+            class="bg-white p-6 rounded-lg shadow-sm group cursor-pointer"
+          >
+            <summary
+              class="flex justify-between items-center font-semibold text-lg list-none text-accent"
+            >
+              Faut-il des ingrédients introuvables ?
+              <span class="transition group-open:rotate-180">▼</span>
+            </summary>
+            <p class="text-gray-600 mt-4 leading-relaxed">
+              Non. 95% des ingrédients se trouvent en supermarché classique
+              (lentilles, pois chiches, riz, avoine). Pour les 5% restants
+              (comme le tempeh ou la levure maltée), un magasin bio suffit.
+            </p>
+          </details>
+
+          <details
+            class="bg-white p-6 rounded-lg shadow-sm group cursor-pointer"
+          >
+            <summary
+              class="flex justify-between items-center font-semibold text-lg list-none text-accent"
+            >
+              Quel est le format du livre ?
+              <span class="transition group-open:rotate-180">▼</span>
+            </summary>
+            <p class="text-gray-600 mt-4 leading-relaxed">
+              C'est un ebook au format PDF haute définition. Vous pouvez le lire
+              sur smartphone, tablette, ordinateur ou même l'imprimer chez vous.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA Area -->
+    <section
+      id="offre"
+      class="py-24 bg-primary text-white relative overflow-hidden"
+    >
+      <!-- Decorative elements -->
+      <div
+        class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full translate-x-1/3 translate-y-1/3"
+      ></div>
+
+      <div class="container mx-auto px-6 text-center relative z-10">
+        <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">
+          Prêt à transformer votre nutrition ?
+        </h2>
+        <p class="text-xl text-green-100 mb-10 max-w-2xl mx-auto">
+          Rejoignez des milliers de sportifs qui ont choisi la performance
+          végétale. Téléchargez votre guide complet instantanément.
+        </p>
+
+        <div
+          class="bg-white text-accent max-w-md mx-auto rounded-2xl p-8 shadow-2xl"
+        >
+          <div class="text-gray-500 font-semibold mb-2">
+            Offre Spéciale Lancement
+          </div>
+          <div class="flex justify-center items-baseline gap-2 mb-6">
+            <span class="text-5xl font-bold text-primary">29€</span>
+            <span class="text-xl text-gray-400 line-through">49€</span>
+          </div>
+          <button
+            class="w-full bg-primary hover:bg-[#1e3c1a] text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-1"
+          >
+            Obtenir mon exemplaire
+          </button>
+          <div class="mt-4 flex justify-center gap-4 text-xs text-gray-400">
+            <span>🔒 Paiement Sécurisé</span>
+            <span>✅ Garantie 14 jours</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-accent text-white py-12 border-t border-gray-800">
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
+      >
+        <div class="mb-6 md:mb-0 text-center md:text-left">
+          <div class="font-serif text-xl font-bold mb-2">Boost Végétal</div>
+          <p class="text-gray-400 text-sm">
+            Nutrition sportive végétale sans compromis.
+          </p>
+        </div>
+        <div class="flex space-x-6 text-sm text-gray-400">
+          <a href="#" class="hover:text-white transition">Mentions Légales</a>
+          <a href="#" class="hover:text-white transition">CGV</a>
+          <a href="#" class="hover:text-white transition">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <div
+      class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 md:hidden z-50 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
+    >
+      <div>
+        <span class="block text-xs text-gray-500">Prix réduit</span>
+        <span class="font-bold text-primary text-xl">29€</span>
+      </div>
+      <a
+        href="#offre"
+        class="bg-primary text-white px-6 py-3 rounded-lg font-bold text-sm"
+      >
+        Acheter
+      </a>
+    </div>
+
+    <!-- Application Logic -->
+    <script>
+      // --- DATA STORAGE ---
+
+      // Problem Section Data
+      const problems = {
+        fatigue: {
+          title: "Manque d'Énergie ?",
+          icon: "⚡",
+          text: "Peur de manquer d'énergie pendant vos entraînements ? C'est souvent lié à un indice glycémique mal géré. Nos recettes équilibrent les glucides complexes pour une diffusion lente de l'énergie.",
+          solution: "Recettes focus: Boost Glycémique",
+        },
+        monotonie: {
+          title: "Assiette Triste ?",
+          icon: "🥱",
+          text: "Lassé de manger toujours du tofu et des lentilles à l'eau ? La cuisine végétale est une explosion de saveurs si on sait utiliser les épices et les textures. Nous vous apprenons à cuisiner, pas juste à assembler.",
+          solution: "45 Recettes Variées",
+        },
+        doute: {
+          title: "Carences ?",
+          icon: "❓",
+          text: "Incertain de vos apports réels en acides aminés ? Chaque recette est calculée pour apporter le spectre complet d'acides aminés essentiels nécessaires à l'anabolisme musculaire.",
+          solution: "Profils Aminés Complets",
+        },
+      };
+
+      // Recipe Data for Visualization
+      const recipes = [
+        {
+          title: "Chili au Tempeh Fumé",
+          desc: "Un plat mijoté riche en saveurs fumées. Le tempeh offre une texture ferme et un profil d'acides aminés complet.",
+          time: "25 min",
+          macros: { protein: 35, carbs: 45, fat: 15 }, // g
+          cals: 520,
+          color: "#D9534F", // Reddish for chili
+        },
+        {
+          title: "Pancakes Pois Chiches",
+          desc: "Le petit-déjeuner salé ou sucré parfait. La farine de pois chiche apporte une densité protéique incroyable.",
+          time: "15 min",
+          macros: { protein: 25, carbs: 30, fat: 10 },
+          cals: 380,
+          color: "#F0AD4E", // Yellowish
+        },
+        {
+          title: "Super Bowl Quinoa",
+          desc: "Fraîcheur intense avec une sauce cacahuète-citron vert. Le quinoa est l'une des rares plantes contenant les 9 acides aminés essentiels.",
+          time: "20 min",
+          macros: { protein: 30, carbs: 50, fat: 12 },
+          cals: 460,
+          color: "#5CB85C", // Greenish
+        },
+      ];
+
+      // Testimonials Data
+      const testimonials = [
+        {
+          name: "Marc, 32 ans",
+          role: "Crossfiteur",
+          quote:
+            "J'avais peur de perdre du muscle en passant au végétal. Résultat ? Mes performances ont explosé et je récupère deux fois plus vite.",
+          img: "🏋️‍♂️",
+        },
+        {
+          name: "Léa, 28 ans",
+          role: "Débutante en cuisine",
+          quote:
+            "Les recettes sont simples, même pour moi qui ne savais pas cuire du riz. Le guide est très pédagogique.",
+          img: "👩‍🍳",
+        },
+        {
+          name: "Thomas, 40 ans",
+          role: "Marathonien",
+          quote:
+            "Enfin un livre qui parle de vrais macros et pas juste de 'manger sain'. C'est précis, c'est bon, c'est efficace.",
+          img: "🏃‍♂️",
+        },
+      ];
+
+      // --- STATE MANAGEMENT ---
+      let currentRecipeIndex = 0;
+      let chartInstance = null;
+      let currentTestimonialIndex = 0;
+
+      // --- DOM ELEMENTS & FUNCTIONS ---
+
+      // 1. Problem Section Logic
+      function updateProblem(key) {
+        // Update Buttons
+        document.querySelectorAll(".problem-btn").forEach((btn) => {
+          btn.classList.remove("active-tab");
+          btn.classList.add("inactive-tab");
+          btn.classList.remove("bg-primary", "text-white", "border-primary"); // Remove explicit classes
+        });
+        const activeBtn = document.getElementById(`btn-${key}`);
+        activeBtn.classList.remove("inactive-tab");
+        activeBtn.classList.add("active-tab");
+
+        // Update Content with Fade Effect
+        const contentDiv = document.getElementById("problem-content");
+        contentDiv.style.opacity = "0";
+
+        setTimeout(() => {
+          const data = problems[key];
+          contentDiv.innerHTML = `
+                    <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-8">
+                        <div class="text-6xl bg-white p-6 rounded-full shadow-lg">${data.icon}</div>
+                        <div>
+                            <h3 class="font-serif text-2xl font-bold text-primary mb-3">${data.title}</h3>
+                            <p class="text-gray-700 text-lg leading-relaxed mb-4">${data.text}</p>
+                            <div class="inline-block bg-primary/10 text-primary font-bold px-4 py-2 rounded-lg text-sm">
+                                Solution: ${data.solution}
+                            </div>
+                        </div>
+                    </div>
+                `;
+          contentDiv.style.opacity = "1";
+        }, 300);
+      }
+
+      // 2. Chart.js Logic (Recipe Visualizer)
+      function initChart() {
+        const ctx = document.getElementById("macroChart").getContext("2d");
+
+        chartInstance = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: ["Protéines (g)", "Glucides (g)", "Lipides (g)"],
+            datasets: [
+              {
+                data: [0, 0, 0], // Initial data
+                backgroundColor: [
+                  "#2D5A27", // Primary Green for Protein
+                  "#F0AD4E", // Carbs
+                  "#D9534F", // Fat
+                ],
+                borderWidth: 0,
+                hoverOffset: 10,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: {
+                  font: { family: "Inter", size: 12 },
+                  padding: 20,
+                },
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    return ` ${context.label}: ${context.raw}g`;
+                  },
+                },
+              },
+            },
+            cutout: "70%",
+          },
+        });
+      }
+
+      function loadRecipeData(index) {
+        currentRecipeIndex = index;
+        const data = recipes[index];
+
+        // UI Updates
+        document.getElementById("recipe-title").innerText = data.title;
+        document.getElementById("recipe-desc").innerText = data.desc;
+        document.getElementById("recipe-time").innerText =
+          `Préparation: ${data.time}`;
+
+        // Number Animation function
+        const animateValue = (id, start, end, duration) => {
+          const obj = document.getElementById(id);
+          let startTimestamp = null;
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min(
+              (timestamp - startTimestamp) / duration,
+              1,
+            );
+            obj.innerHTML =
+              Math.floor(progress * (end - start) + start) +
+              (id === "val-cals" ? "" : "g");
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            }
+          };
+          window.requestAnimationFrame(step);
+        };
+
+        animateValue("val-protein", 0, data.macros.protein, 500);
+        animateValue("val-cals", 0, data.cals, 500);
+        animateValue("val-carbs", 0, data.macros.carbs, 500);
+        animateValue("val-fat", 0, data.macros.fat, 500);
+
+        // Active Class Styling
+        document.querySelectorAll(".recipe-selector").forEach((el, idx) => {
+          if (idx === index) {
+            el.classList.add("border-primary", "bg-gray-50");
+            el.classList.remove("border-transparent", "bg-white");
+          } else {
+            el.classList.remove("border-primary", "bg-gray-50");
+            el.classList.add("border-transparent", "bg-white");
+          }
+        });
+
+        // Chart Update
+        if (chartInstance) {
+          chartInstance.data.datasets[0].data = [
+            data.macros.protein,
+            data.macros.carbs,
+            data.macros.fat,
+          ];
+          chartInstance.update();
+        }
+      }
+
+      // 3. Testimonial Slider Logic
+      function renderTestimonial() {
+        const container = document.getElementById("testimonial-container");
+        const data = testimonials[currentTestimonialIndex];
+
+        // Remove animation class to trigger reflow
+        container.classList.remove("fade-in");
+        void container.offsetWidth; // trigger reflow
+        container.classList.add("fade-in");
+
+        container.innerHTML = `
+                <p class="text-xl md:text-2xl text-gray-700 font-serif italic mb-6 leading-relaxed">"${data.quote}"</p>
+                <div class="flex items-center justify-center gap-3">
+                    <span class="text-2xl bg-gray-100 p-2 rounded-full">${data.img}</span>
+                    <div class="text-left">
+                        <div class="font-bold text-accent">${data.name}</div>
+                        <div class="text-xs text-primary font-semibold uppercase tracking-wide">${data.role}</div>
+                    </div>
+                </div>
+            `;
+
+        // Update dots
+        const dotsContainer = document.getElementById("testimonial-dots");
+        dotsContainer.innerHTML = testimonials
+          .map(
+            (_, idx) => `
+                <button onclick="goToTestimonial(${idx})" class="w-2 h-2 rounded-full transition-all duration-300 ${idx === currentTestimonialIndex ? "bg-primary w-6" : "bg-gray-300"}"></button>
+            `,
+          )
+          .join("");
+      }
+
+      function nextTestimonial() {
+        currentTestimonialIndex =
+          (currentTestimonialIndex + 1) % testimonials.length;
+        renderTestimonial();
+      }
+
+      function prevTestimonial() {
+        currentTestimonialIndex =
+          (currentTestimonialIndex - 1 + testimonials.length) %
+          testimonials.length;
+        renderTestimonial();
+      }
+
+      function goToTestimonial(index) {
+        currentTestimonialIndex = index;
+        renderTestimonial();
+      }
+
+      // --- INITIALIZATION ---
+      window.addEventListener("DOMContentLoaded", () => {
+        // Init Problem Section
+        updateProblem("fatigue");
+
+        // Init Chart
+        initChart();
+        loadRecipeData(0); // Load first recipe
+
+        // Init Testimonials
+        renderTestimonial();
+
+        // Auto rotate testimonials
+        setInterval(nextTestimonial, 6000);
+      });
+    </script>
+  </body>
+</html>
