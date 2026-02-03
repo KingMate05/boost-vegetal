@@ -1,0 +1,1385 @@
+<!doctype html>
+<html lang="fr" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Le Boost Protéiné Végétal - Ebook de recettes (Mat)</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2D5A27", // Forest green
+              secondary: "#F9F7F2", // Linen beige
+              accent: "#1A1A1A", // Charcoal
+              success: "#8FB339", // Tender green
+              surface: "#FFFFFF",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              serif: ["Playfair Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        background-color: #f9f7f2;
+        color: #1a1a1a;
+      }
+
+      .chart-container-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 520px;
+        margin: 0 auto;
+        height: 360px;
+        max-height: 420px;
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .active-tab {
+        background-color: #2d5a27;
+        color: #ffffff;
+        border-color: #2d5a27;
+      }
+
+      .inactive-tab {
+        background-color: transparent;
+        color: #2d5a27;
+        border-color: #2d5a27;
+      }
+    </style>
+  </head>
+
+  <body class="antialiased">
+    <!-- CONFIG -->
+    <script>
+      // ✅ Remplace par ton vrai lien checkout (Stripe / Gumroad / PayPal / etc.)
+      const CHECKOUT_URL = "#";
+
+      // ✅ Date limite de l'offre (heure locale du navigateur)
+      // Exemple : "2026-02-09T23:59:59"
+      const LAUNCH_END_DATE = "2026-02-09T23:59:59";
+    </script>
+
+    <!-- NAV -->
+    <nav
+      class="fixed w-full bg-[#F9F7F2]/90 backdrop-blur-md z-50 border-b border-[#2D5A27]/10"
+    >
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="font-serif text-xl font-bold text-primary tracking-wide">
+          Boost Végétal
+        </div>
+
+        <div class="hidden md:flex space-x-8 text-sm font-semibold text-accent">
+          <a href="#histoire" class="hover:text-primary transition">Histoire</a>
+          <a href="#problemes" class="hover:text-primary transition"
+            >Pourquoi ça bloque</a
+          >
+          <a href="#apercu" class="hover:text-primary transition"
+            >Exemples & repères</a
+          >
+          <a href="#bonus" class="hover:text-primary transition"
+            >Bonus 7 jours</a
+          >
+        </div>
+
+        <a
+          href="#offre"
+          class="bg-primary text-white px-5 py-2 rounded-full font-semibold hover:bg-[#1e3c1a] transition text-sm shadow-lg"
+        >
+          Obtenir l'Ebook
+        </a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="pt-32 pb-20 px-6 md:px-12 lg:px-24">
+      <div class="container mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div class="space-y-6">
+          <div
+            class="inline-flex items-center gap-2 bg-success/20 text-primary px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+          >
+            <span>Édition 2025</span>
+            <span class="opacity-50">•</span>
+            <span>45 recettes + bonus 7 jours</span>
+          </div>
+
+          <h1
+            class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-accent"
+          >
+            Manger végétal, <span class="text-primary">se rassasier</span>, et
+            se sentir <span class="text-primary">bien</span>.
+          </h1>
+
+          <p class="text-lg text-gray-600 leading-relaxed max-w-xl">
+            Des recettes simples, gourmandes, sans produits animaux, avec des
+            repères nutritionnels clairs (sans transformer ta cuisine en cours
+            de diététique).
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 pt-2">
+            <a
+              href="#offre"
+              class="bg-primary text-white text-center px-8 py-4 rounded-lg font-bold text-lg shadow-xl hover:bg-[#1e3c1a] hover:translate-y-[-2px] transition duration-300"
+            >
+              Télécharger le guide
+            </a>
+
+            <div
+              class="flex items-center justify-center space-x-2 text-sm text-gray-500"
+            >
+              <span class="text-xl">🔒</span>
+              <span>Paiement sécurisé & accès immédiat</span>
+            </div>
+          </div>
+
+          <!-- QUICK TRUST -->
+          <div class="mt-6 grid sm:grid-cols-3 gap-3">
+            <div
+              class="bg-white rounded-xl border border-primary/10 shadow-sm p-4"
+            >
+              <div
+                class="text-xs uppercase tracking-widest text-gray-400 font-bold"
+              >
+                Format
+              </div>
+              <div class="mt-1 font-semibold text-accent">
+                PDF HD • 120 pages
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-xl border border-primary/10 shadow-sm p-4"
+            >
+              <div
+                class="text-xs uppercase tracking-widest text-gray-400 font-bold"
+              >
+                Esprit
+              </div>
+              <div class="mt-1 font-semibold text-accent">
+                Simple • refaisable
+              </div>
+            </div>
+            <div
+              class="bg-white rounded-xl border border-primary/10 shadow-sm p-4"
+            >
+              <div
+                class="text-xs uppercase tracking-widest text-gray-400 font-bold"
+              >
+                Inclus
+              </div>
+              <div class="mt-1 font-semibold text-accent">
+                Menus 7 jours + courses
+              </div>
+            </div>
+          </div>
+
+          <!-- AUTHOR -->
+          <div class="text-sm text-gray-500">
+            Par <span class="font-semibold text-accent">Mat</span> • cuisine
+            végétale riche en protéines, sans pression.
+          </div>
+        </div>
+
+        <!-- BOOK CARD -->
+        <div
+          class="relative bg-white p-8 rounded-2xl shadow-2xl border border-gray-100 rotate-2 hover:rotate-0 transition duration-500"
+        >
+          <div
+            class="absolute top-0 right-0 bg-success text-white font-bold px-4 py-2 rounded-bl-xl rounded-tr-xl shadow-md"
+          >
+            Offre lancement
+          </div>
+
+          <div
+            class="bg-gray-100 h-64 md:h-80 rounded-lg flex items-center justify-center mb-6 overflow-hidden relative"
+          >
+            <div class="text-center p-6">
+              <div class="text-6xl mb-4">📘</div>
+              <p class="font-serif text-xl italic text-gray-400">
+                Mockup couverture (à remplacer)
+              </p>
+              <p class="text-xs text-gray-400 mt-2">
+                Mets un vrai mockup tablette pour booster la confiance.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex justify-between items-end">
+            <div>
+              <p
+                class="text-sm text-gray-500 uppercase tracking-widest font-semibold"
+              >
+                Le Boost Protéiné Végétal
+              </p>
+              <h3 class="font-serif text-2xl font-bold text-accent mt-1">
+                45 recettes végétales gourmandes
+              </h3>
+            </div>
+            <div class="text-right">
+              <p class="text-gray-400 line-through text-sm">49€</p>
+              <p class="text-3xl font-bold text-primary">29€</p>
+            </div>
+          </div>
+
+          <div
+            class="mt-6 bg-secondary rounded-xl p-4 border border-primary/10"
+          >
+            <div
+              class="text-xs uppercase tracking-widest text-gray-500 font-bold"
+            >
+              Prix lancement jusqu'au
+            </div>
+            <div class="mt-2 flex items-center justify-between gap-3">
+              <div
+                class="text-sm text-gray-700 font-semibold"
+                id="deadline-label"
+              >
+                9 février 2026, 23:59
+              </div>
+              <div
+                class="text-sm bg-white border border-primary/10 rounded-lg px-3 py-2 font-mono text-primary"
+                id="countdown"
+                aria-label="Compte à rebours de l'offre"
+              >
+                --:--:--
+              </div>
+            </div>
+            <p class="text-xs text-gray-500 mt-2">
+              Une date claire, pas une fausse urgence.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HISTOIRE -->
+    <section id="histoire" class="py-20 bg-white">
+      <div class="container mx-auto px-6 max-w-5xl">
+        <div class="grid md:grid-cols-2 gap-12 items-start">
+          <div class="space-y-5">
+            <h2 class="font-serif text-3xl md:text-4xl font-bold text-accent">
+              Où tout a commencé
+            </h2>
+            <p class="text-gray-600 leading-relaxed">
+              Né avec une allergie aux produits laitiers, j’ai grandi dans une
+              cuisine un peu différente. Ma mère trouvait toujours une
+              alternative, une astuce, un détour gourmand.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+              En préparant ce guide, j’ai testé, ajusté, parfois raté, souvent
+              découvert. Et j’ai gardé
+              <span class="font-semibold text-accent">les 45 recettes</span> qui
+              m’ont semblé les plus simples, les plus efficaces et les plus
+              gourmandes, même si tu n’es pas un cordon-bleu.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <a
+                href="#apercu"
+                class="inline-flex items-center justify-center bg-primary text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#1e3c1a] transition"
+              >
+                Voir des exemples + repères
+              </a>
+              <a
+                href="#bonus"
+                class="inline-flex items-center justify-center bg-secondary border border-primary/20 text-primary px-6 py-3 rounded-lg font-semibold hover:bg-white transition"
+              >
+                Découvrir le bonus 7 jours
+              </a>
+            </div>
+          </div>
+
+          <div
+            class="bg-secondary p-8 rounded-2xl border border-primary/10 shadow-sm"
+          >
+            <div
+              class="text-xs uppercase tracking-widest text-gray-500 font-bold"
+            >
+              La philosophie du livre
+            </div>
+
+            <ul class="mt-5 space-y-4 text-gray-700">
+              <li class="flex items-start gap-3">
+                <span class="text-primary font-bold">✓</span>
+                <span
+                  ><strong>Pas de pression :</strong> des repères, pas une
+                  obsession.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-primary font-bold">✓</span>
+                <span
+                  ><strong>Simple :</strong> ingrédients accessibles, techniques
+                  basiques.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-primary font-bold">✓</span>
+                <span
+                  ><strong>Bien-être :</strong> satiété, digestion plus légère,
+                  énergie plus stable.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-primary font-bold">✓</span>
+                <span
+                  ><strong>Riche en protéines végétales :</strong> sans produits
+                  animaux.</span
+                >
+              </li>
+            </ul>
+
+            <div
+              class="mt-6 p-4 bg-white rounded-xl border border-primary/10 text-sm text-gray-600"
+            >
+              <span class="font-semibold text-accent"
+                >Dans chaque recette :</span
+              >
+              calories, protéines, glucides, lipides, fibres. Juste l’essentiel.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROBLEMES -->
+    <section id="problemes" class="py-20 bg-white">
+      <div class="container mx-auto px-6 max-w-5xl">
+        <div class="text-center mb-14">
+          <h2
+            class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4"
+          >
+            Tu veux manger végétal… mais ça bloque souvent ici
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Clique sur les onglets. On reste concret, comme dans le guide.
+          </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+          <button
+            onclick="updateProblem('cale')"
+            id="btn-cale"
+            class="problem-btn active-tab px-6 py-3 rounded-full border-2 font-semibold transition duration-300"
+          >
+            Ça ne cale pas
+          </button>
+          <button
+            onclick="updateProblem('compliqué')"
+            id="btn-compliqué"
+            class="problem-btn inactive-tab px-6 py-3 rounded-full border-2 font-semibold transition duration-300"
+          >
+            C'est fade/long
+          </button>
+          <button
+            onclick="updateProblem('peur')"
+            id="btn-peur"
+            class="problem-btn inactive-tab px-6 py-3 rounded-full border-2 font-semibold transition duration-300"
+          >
+            Peur de manquer
+          </button>
+        </div>
+
+        <div
+          id="problem-content"
+          class="bg-[#F9F7F2] rounded-2xl p-8 md:p-12 shadow-inner border border-primary/10 transition-all duration-300"
+        ></div>
+      </div>
+    </section>
+
+    <!-- CE QUE TU TROUVES -->
+    <section class="py-18 bg-secondary">
+      <div class="container mx-auto px-6 py-16 max-w-6xl">
+        <div class="text-center mb-12">
+          <h2
+            class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4"
+          >
+            Ce que tu vas trouver dans le guide
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            De la variété, sans ingrédients bizarres, et des repères
+            nutritionnels simples.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-5 gap-4">
+          <div
+            class="bg-white rounded-2xl border border-primary/10 p-6 shadow-sm"
+          >
+            <div class="text-3xl mb-2">🥣</div>
+            <div class="font-semibold text-accent">Petits-déjeuners</div>
+            <div class="text-sm text-gray-600 mt-1">
+              Protéinés & rassasiants
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl border border-primary/10 p-6 shadow-sm"
+          >
+            <div class="text-3xl mb-2">⚡</div>
+            <div class="font-semibold text-accent">Snacks</div>
+            <div class="text-sm text-gray-600 mt-1">Boosters rapides</div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl border border-primary/10 p-6 shadow-sm"
+          >
+            <div class="text-3xl mb-2">🍛</div>
+            <div class="font-semibold text-accent">Plats principaux</div>
+            <div class="text-sm text-gray-600 mt-1">Simples & nourrissants</div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl border border-primary/10 p-6 shadow-sm"
+          >
+            <div class="text-3xl mb-2">🥗</div>
+            <div class="font-semibold text-accent">Salades & bowls</div>
+            <div class="text-sm text-gray-600 mt-1">Complets & frais</div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl border border-primary/10 p-6 shadow-sm"
+          >
+            <div class="text-3xl mb-2">🍫</div>
+            <div class="font-semibold text-accent">Desserts</div>
+            <div class="text-sm text-gray-600 mt-1">
+              Gourmands, sans prise de tête
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-8 max-w-3xl mx-auto bg-white rounded-2xl p-6 border border-primary/10 shadow-sm"
+        >
+          <div class="text-sm text-gray-600 leading-relaxed">
+            <span class="font-semibold text-accent">Sous chaque recette :</span>
+            calories, protéines, glucides, lipides, fibres.
+            <span class="font-semibold text-accent">Ce sont des repères</span>,
+            pas un concours de précision.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- APERCU + CHART -->
+    <section id="apercu" class="py-24 bg-secondary">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2
+            class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4"
+          >
+            Exemples + repères en un coup d'œil
+          </h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">
+            Choisis une recette type. Tu vois les macros essentielles (dont les
+            fibres), et la répartition calorique estimée.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <!-- SELECTEUR -->
+          <div class="lg:col-span-1 space-y-4">
+            <h3
+              class="font-bold text-gray-500 uppercase text-xs tracking-widest mb-4"
+            >
+              Exemples (site)
+            </h3>
+
+            <button
+              onclick="loadRecipeData(0)"
+              class="recipe-selector w-full text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border-l-4 border-transparent hover:border-primary transition group"
+              id="recipe-0"
+            >
+              <div class="flex justify-between items-center">
+                <span
+                  class="font-serif font-bold text-lg text-accent group-hover:text-primary"
+                >
+                  Porridge soja & chia
+                </span>
+                <span class="text-xl">🥣</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Crémeux • rassasiant</p>
+            </button>
+
+            <button
+              onclick="loadRecipeData(1)"
+              class="recipe-selector w-full text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border-l-4 border-transparent hover:border-primary transition group"
+              id="recipe-1"
+            >
+              <div class="flex justify-between items-center">
+                <span
+                  class="font-serif font-bold text-lg text-accent group-hover:text-primary"
+                >
+                  Bowl quinoa & tofu
+                </span>
+                <span class="text-xl">🥗</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Complet • simple</p>
+            </button>
+
+            <button
+              onclick="loadRecipeData(2)"
+              class="recipe-selector w-full text-left p-4 rounded-xl bg-white shadow-sm hover:shadow-md border-l-4 border-transparent hover:border-primary transition group"
+              id="recipe-2"
+            >
+              <div class="flex justify-between items-center">
+                <span
+                  class="font-serif font-bold text-lg text-accent group-hover:text-primary"
+                >
+                  Curry lentilles corail
+                </span>
+                <span class="text-xl">🍛</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Doudou • digeste</p>
+            </button>
+
+            <div
+              class="mt-6 bg-white p-4 rounded-xl border border-primary/10 text-sm text-gray-600"
+            >
+              <div class="font-semibold text-accent mb-1">Transparence</div>
+              <p>
+                Le graphique montre une
+                <span class="font-semibold">répartition calorique</span> (P×4,
+                C×4, F×9). Les macros affichées restent en grammes, comme dans
+                le livre.
+              </p>
+            </div>
+          </div>
+
+          <!-- PANE + CHART -->
+          <div
+            class="lg:col-span-2 bg-white rounded-2xl shadow-xl p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center border border-gray-100"
+          >
+            <div class="flex-1 space-y-6 w-full">
+              <div>
+                <h3
+                  id="recipe-title"
+                  class="font-serif text-3xl font-bold text-primary mb-2"
+                >
+                  Porridge soja & chia
+                </h3>
+                <p
+                  id="recipe-desc"
+                  class="text-gray-600 text-sm leading-relaxed"
+                >
+                  Un petit-déj crémeux, simple, qui cale bien. Idéal quand tu
+                  veux de l’énergie stable sans lourdeur.
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div class="text-xs text-gray-500 uppercase font-semibold">
+                    Calories
+                  </div>
+                  <div id="val-cals" class="text-2xl font-bold text-accent">
+                    480
+                  </div>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div class="text-xs text-gray-500 uppercase font-semibold">
+                    Protéines
+                  </div>
+                  <div id="val-protein" class="text-2xl font-bold text-primary">
+                    18g
+                  </div>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div class="text-xs text-gray-500 uppercase font-semibold">
+                    Glucides
+                  </div>
+                  <div id="val-carbs" class="text-2xl font-bold text-gray-700">
+                    55g
+                  </div>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div class="text-xs text-gray-500 uppercase font-semibold">
+                    Lipides
+                  </div>
+                  <div id="val-fat" class="text-2xl font-bold text-gray-700">
+                    18g
+                  </div>
+                </div>
+
+                <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                  <div class="text-xs text-gray-500 uppercase font-semibold">
+                    Fibres
+                  </div>
+                  <div id="val-fiber" class="text-2xl font-bold text-gray-700">
+                    9g
+                  </div>
+                </div>
+
+                <div
+                  class="flex items-center text-sm text-gray-500 bg-secondary px-3 py-2 rounded-lg border border-primary/10"
+                >
+                  <span class="mr-2">⏱️</span>
+                  <span id="recipe-time">Préparation: 10 min</span>
+                </div>
+              </div>
+
+              <div
+                class="bg-secondary p-4 rounded-xl border border-primary/10 text-sm text-gray-600"
+              >
+                <span class="font-semibold text-accent">Note :</span>
+                ces chiffres sont des repères. Dans l’ebook, tu as la même
+                logique, recette après recette, sans prise de tête.
+              </div>
+            </div>
+
+            <div
+              class="w-full md:w-1/2 flex flex-col items-center justify-center"
+            >
+              <div class="chart-container-wrapper">
+                <canvas id="macroChart"></canvas>
+              </div>
+              <p class="text-xs text-gray-400 mt-4 text-center">
+                Répartition calorique estimée (P×4, C×4, F×9)
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BONUS 7 JOURS -->
+    <section id="bonus" class="py-20 bg-white">
+      <div class="container mx-auto px-6 max-w-6xl">
+        <div class="text-center mb-12">
+          <h2
+            class="font-serif text-3xl md:text-4xl font-bold text-accent mb-4"
+          >
+            Bonus inclus : 7 jours de menus + liste de courses
+          </h2>
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            Pour t’aider à démarrer sans te poser mille questions. 3 repas + 1
+            snack par jour, basé sur les recettes du livre, avec une liste de
+            courses complète.
+          </p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+          <div
+            class="bg-secondary rounded-2xl border border-primary/10 p-8 shadow-sm"
+          >
+            <div
+              class="text-xs uppercase tracking-widest text-gray-500 font-bold"
+            >
+              À quoi ça sert concrètement
+            </div>
+            <ul class="mt-5 space-y-4 text-gray-700">
+              <li class="flex items-start gap-3">
+                <span class="text-success text-xl">✓</span>
+                <span
+                  ><strong>Simple :</strong> une structure claire pour la
+                  semaine.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-success text-xl">✓</span>
+                <span
+                  ><strong>Rassasiant :</strong> protéines + fibres bien
+                  réparties sur la journée.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-success text-xl">✓</span>
+                <span
+                  ><strong>Pratique :</strong> courses en une fois, moins de
+                  charge mentale.</span
+                >
+              </li>
+              <li class="flex items-start gap-3">
+                <span class="text-success text-xl">✓</span>
+                <span
+                  ><strong>Flexible :</strong> tu peux intervertir les repas,
+                  adapter selon ton appétit.</span
+                >
+              </li>
+            </ul>
+
+            <div
+              class="mt-6 bg-white rounded-xl border border-primary/10 p-5 text-sm text-gray-600"
+            >
+              <div class="font-semibold text-accent mb-2">
+                Liste de courses incluse
+              </div>
+              Fruits & légumes, protéines végétales, céréales, épicerie, épices…
+              Tout est pensé pour te faciliter la vie.
+            </div>
+          </div>
+
+          <div
+            class="bg-white rounded-2xl border border-primary/10 p-8 shadow-sm"
+          >
+            <div
+              class="text-xs uppercase tracking-widest text-gray-500 font-bold"
+            >
+              Exemple : Jour 1
+            </div>
+
+            <div class="mt-5 space-y-3">
+              <div
+                class="flex items-center justify-between bg-secondary rounded-xl p-4 border border-primary/10"
+              >
+                <div>
+                  <div class="text-sm text-gray-500">Petit-déjeuner</div>
+                  <div class="font-semibold text-accent">
+                    Porridge protéiné soja & chia
+                  </div>
+                </div>
+                <div class="text-xl">🥣</div>
+              </div>
+
+              <div
+                class="flex items-center justify-between bg-secondary rounded-xl p-4 border border-primary/10"
+              >
+                <div>
+                  <div class="text-sm text-gray-500">Déjeuner</div>
+                  <div class="font-semibold text-accent">
+                    Bowl quinoa, tofu mariné & légumes
+                  </div>
+                </div>
+                <div class="text-xl">🥗</div>
+              </div>
+
+              <div
+                class="flex items-center justify-between bg-secondary rounded-xl p-4 border border-primary/10"
+              >
+                <div>
+                  <div class="text-sm text-gray-500">Snack</div>
+                  <div class="font-semibold text-accent">
+                    Pudding chia (vanille)
+                  </div>
+                </div>
+                <div class="text-xl">🍮</div>
+              </div>
+
+              <div
+                class="flex items-center justify-between bg-secondary rounded-xl p-4 border border-primary/10"
+              >
+                <div>
+                  <div class="text-sm text-gray-500">Dîner</div>
+                  <div class="font-semibold text-accent">
+                    Curry lentilles corail & lait de coco
+                  </div>
+                </div>
+                <div class="text-xl">🍛</div>
+              </div>
+            </div>
+
+            <div class="mt-6 text-sm text-gray-600">
+              Le but n’est pas d’être “parfait”, mais d’avoir une base claire
+              que tu peux répéter, ajuster et rendre durable.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEMOIGNAGES -->
+    <section
+      id="temoignages"
+      class="py-20 bg-primary/5 border-y border-primary/10"
+    >
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="font-serif text-3xl font-bold text-accent mb-12">
+          Des retours qui reviennent souvent
+        </h2>
+
+        <div
+          class="relative max-w-3xl mx-auto bg-white p-10 rounded-2xl shadow-lg"
+        >
+          <div
+            class="text-6xl text-primary/20 absolute top-4 left-6 font-serif"
+          >
+            "
+          </div>
+
+          <div
+            id="testimonial-container"
+            class="min-h-[160px] flex flex-col justify-center items-center fade-in"
+          ></div>
+
+          <div class="flex justify-center gap-4 mt-8">
+            <button
+              onclick="prevTestimonial()"
+              class="p-2 rounded-full hover:bg-gray-100 transition"
+              aria-label="Témoignage précédent"
+              title="Témoignage précédent"
+            >
+              ←
+            </button>
+
+            <div class="flex gap-2 items-center" id="testimonial-dots"></div>
+
+            <button
+              onclick="nextTestimonial()"
+              class="p-2 rounded-full hover:bg-gray-100 transition"
+              aria-label="Témoignage suivant"
+              title="Témoignage suivant"
+            >
+              →
+            </button>
+          </div>
+
+          <p class="text-xs text-gray-400 mt-6">
+            Tu peux remplacer ces exemples par de vrais retours plus tard pour
+            renforcer encore la confiance.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 bg-[#F9F7F2]">
+      <div class="container mx-auto px-6 max-w-3xl">
+        <h2 class="font-serif text-3xl font-bold text-center text-accent mb-12">
+          Questions fréquentes
+        </h2>
+
+        <div class="space-y-4">
+          <details
+            class="bg-white p-6 rounded-lg shadow-sm group cursor-pointer"
+          >
+            <summary
+              class="flex justify-between items-center font-semibold text-lg list-none text-accent"
+            >
+              Je ne veux pas compter mes macros. C'est quand même pour moi ?
+              <span class="transition group-open:rotate-180">▼</span>
+            </summary>
+            <p class="text-gray-600 mt-4 leading-relaxed">
+              Oui. Les chiffres sont des repères simples. L’idée n’est pas de
+              compter à la virgule près, mais de mieux comprendre ce que tu mets
+              dans ton assiette, sans pression.
+            </p>
+          </details>
+
+          <details
+            class="bg-white p-6 rounded-lg shadow-sm group cursor-pointer"
+          >
+            <summary
+              class="flex justify-between items-center font-semibold text-lg list-none text-accent"
+            >
+              Est-ce adapté aux débutants en cuisine ?
+              <span class="transition group-open:rotate-180">▼</span>
+            </summary>
+            <p class="text-gray-600 mt-4 leading-relaxed">
+              Oui. Techniques simples, ingrédients accessibles. Le guide est
+              pensé pour être refait au quotidien, pas pour impressionner.
+            </p>
+          </details>
+
+          <details
+            class="bg-white p-6 rounded-lg shadow-sm group cursor-pointer"
+          >
+            <summary
+              class="flex justify-between items-center font-semibold text-lg list-none text-accent"
+            >
+              Allergènes (soja, arachides...) et alternatives ?
+              <span class="transition group-open:rotate-180">▼</span>
+            </summary>
+            <p class="text-gray-600 mt-4 leading-relaxed">
+              Certains ingrédients (soja, arachides, gluten selon les produits)
+              peuvent être des allergènes. Quand c’est possible, tu peux
+              utiliser des alternatives simples (ex: tahini au lieu d’arachide,
+              légumineuses alternatives, etc.). L’objectif du livre reste la
+              simplicité.
+            </p>
+          </details>
+
+          <details
+            class="bg-white p-6 rounded-lg shadow-sm group cursor-pointer"
+          >
+            <summary
+              class="flex justify-between items-center font-semibold text-lg list-none text-accent"
+            >
+              Le format du livre ?
+              <span class="transition group-open:rotate-180">▼</span>
+            </summary>
+            <p class="text-gray-600 mt-4 leading-relaxed">
+              Ebook PDF haute définition. Lisible sur smartphone, tablette,
+              ordinateur, et imprimable.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFRE -->
+    <section
+      id="offre"
+      class="py-24 bg-primary text-white relative overflow-hidden"
+    >
+      <div
+        class="absolute top-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full -translate-x-1/2 -translate-y-1/2"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full translate-x-1/3 translate-y-1/3"
+      ></div>
+
+      <div class="container mx-auto px-6 text-center relative z-10">
+        <h2 class="font-serif text-4xl md:text-5xl font-bold mb-6">
+          Prêt à te simplifier la vie ?
+        </h2>
+
+        <p class="text-xl text-green-100 mb-10 max-w-2xl mx-auto">
+          45 recettes végétales riches en protéines + un plan 7 jours + une
+          liste de courses. De quoi manger mieux, caler plus longtemps, et te
+          sentir bien, sans te prendre la tête.
+        </p>
+
+        <div
+          class="bg-white text-accent max-w-xl mx-auto rounded-2xl p-8 shadow-2xl"
+        >
+          <div
+            class="text-left mb-6 bg-secondary p-4 rounded-xl border border-primary/10"
+          >
+            <div class="font-semibold text-accent mb-2">Ce que tu reçois</div>
+            <ul class="text-sm text-gray-700 space-y-2">
+              <li>✅ Ebook PDF HD (120 pages)</li>
+              <li>✅ 45 recettes 100% végétales, simples et gourmandes</li>
+              <li>
+                ✅ Repères par recette : calories, protéines, glucides, lipides,
+                fibres
+              </li>
+              <li>✅ Bonus : 7 jours de menus structurés</li>
+              <li>✅ Bonus : liste de courses complète</li>
+            </ul>
+          </div>
+
+          <div class="text-gray-500 font-semibold mb-2">Offre lancement</div>
+          <div class="flex justify-center items-baseline gap-2 mb-2">
+            <span class="text-5xl font-bold text-primary">29€</span>
+            <span class="text-xl text-gray-400 line-through">49€</span>
+          </div>
+
+          <div class="text-sm text-gray-500 mb-6">
+            Jusqu’au
+            <span class="font-semibold" id="deadline-label-2"
+              >9 février 2026</span
+            >
+          </div>
+
+          <a
+            href="#"
+            id="checkout-link"
+            class="block w-full bg-primary hover:bg-[#1e3c1a] text-white font-bold py-4 px-8 rounded-lg text-lg shadow-lg hover:shadow-xl transition transform hover:-translate-y-1"
+          >
+            Obtenir mon exemplaire
+          </a>
+
+          <div
+            class="mt-4 flex flex-wrap justify-center gap-4 text-xs text-gray-500"
+          >
+            <span>🔒 Paiement sécurisé</span>
+            <span>✅ Accès immédiat</span>
+            <span>↩️ Garantie 14 jours</span>
+          </div>
+
+          <p class="mt-4 text-xs text-gray-400">
+            Une cuisine végétale riche en protéines peut être simple, gourmande
+            et durable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-accent text-white py-12 border-t border-gray-800">
+      <div
+        class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center"
+      >
+        <div class="mb-6 md:mb-0 text-center md:text-left">
+          <div class="font-serif text-xl font-bold mb-2">Boost Végétal</div>
+          <p class="text-gray-400 text-sm">
+            Par Mat • cuisine végétale riche en protéines, sans pression.
+          </p>
+        </div>
+        <div class="flex space-x-6 text-sm text-gray-400">
+          <a href="#" class="hover:text-white transition">Mentions légales</a>
+          <a href="#" class="hover:text-white transition">CGV</a>
+          <a href="#" class="hover:text-white transition">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MOBILE STICKY CTA -->
+    <div
+      class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 p-4 md:hidden z-50 flex justify-between items-center shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
+    >
+      <div>
+        <span class="block text-xs text-gray-500">Prix lancement</span>
+        <span class="font-bold text-primary text-xl">29€</span>
+      </div>
+      <a
+        href="#offre"
+        class="bg-primary text-white px-6 py-3 rounded-lg font-bold text-sm"
+      >
+        Acheter
+      </a>
+    </div>
+
+    <!-- LOGIC -->
+    <script>
+      // --- DATA ---
+      const problems = {
+        cale: {
+          title: "Ça ne cale pas",
+          icon: "🍽️",
+          text: "Beaucoup de plats végétaux sont bons… mais tu as faim 2 heures après. Souvent, il manque un vrai équilibre protéines + fibres + bons lipides. Dans le livre, les recettes sont pensées pour rassasier durablement.",
+          solution: "Repères simples + recettes rassasiantes",
+        },
+        compliqué: {
+          title: "C'est fade ou trop long",
+          icon: "🥱",
+          text: "Si tu as l’impression que végétal = recettes compliquées ou plats tristes, ce n’est pas toi le problème. Il te manque surtout des idées refaisables et des combinaisons simples. Ici, pas de techniques bizarres, pas d’ingrédients introuvables.",
+          solution: "Simple, rapide, gourmand",
+        },
+        peur: {
+          title: "Peur de manquer",
+          icon: "❓",
+          text: "Le doute arrive quand tout est flou. Dans l’ebook, tu as des repères nutritionnels sous chaque recette: calories, protéines, glucides, lipides, fibres. Juste l’essentiel, pour cuisiner l’esprit léger.",
+          solution: "Repères par recette (sans obsession)",
+        },
+      };
+
+      // Exemples alignés avec ton ebook (porridge + menus)
+      // Tu peux les remplacer/affiner si tu veux coller exactement à tes recettes.
+      const recipes = [
+        {
+          title: "Porridge soja & chia",
+          desc: "Un petit-déjeuner crémeux, parfumé, qui cale bien. Lait de soja + avoine + chia = combo simple et efficace.",
+          time: "10 min",
+          macros: { protein: 18, carbs: 55, fat: 18, fiber: 9 }, // g
+          cals: 480,
+        },
+        {
+          title: "Bowl quinoa & tofu",
+          desc: "Une assiette complète et modulable. Le genre de repas que tu peux adapter avec ce que tu as sous la main.",
+          time: "20 min",
+          macros: { protein: 28, carbs: 50, fat: 14, fiber: 10 },
+          cals: 520,
+        },
+        {
+          title: "Curry lentilles corail",
+          desc: "Doudou, digeste, parfait quand tu veux manger chaud sans y passer la soirée. Très bon pour la satiété.",
+          time: "25 min",
+          macros: { protein: 24, carbs: 48, fat: 16, fiber: 12 },
+          cals: 560,
+        },
+      ];
+
+      const testimonials = [
+        {
+          name: "Sarah, 29 ans",
+          role: "Organisation & bien-être",
+          quote:
+            "Le bonus menus + liste de courses, c’est ce qui m’a fait tenir. Moins de charge mentale, plus de repas simples, et je cale mieux.",
+          img: "🧾",
+        },
+        {
+          name: "Nicolas, 35 ans",
+          role: "Alimentation végétale",
+          quote:
+            "Enfin des recettes refaisables. Pas de trucs introuvables, pas de culpabilisation. J’ai retrouvé du plaisir à cuisiner.",
+          img: "🥗",
+        },
+        {
+          name: "Lina, 24 ans",
+          role: "Débutante",
+          quote:
+            "Les repères nutritionnels m’aident sans me stresser. Je ne compte rien, mais je comprends mieux mes assiettes.",
+          img: "✨",
+        },
+      ];
+
+      // --- STATE ---
+      let currentRecipeIndex = 0;
+      let chartInstance = null;
+      let currentTestimonialIndex = 0;
+
+      // --- COUNTDOWN ---
+      function formatCountdown(ms) {
+        if (ms <= 0) return "00:00:00";
+        const totalSeconds = Math.floor(ms / 1000);
+        const hours = String(Math.floor((totalSeconds / 3600) % 24)).padStart(
+          2,
+          "0",
+        );
+        const minutes = String(Math.floor((totalSeconds / 60) % 60)).padStart(
+          2,
+          "0",
+        );
+        const seconds = String(totalSeconds % 60).padStart(2, "0");
+        return `${hours}:${minutes}:${seconds}`;
+      }
+
+      function startCountdown() {
+        const countdownEl = document.getElementById("countdown");
+        const end = new Date(LAUNCH_END_DATE).getTime();
+
+        const tick = () => {
+          const now = Date.now();
+          const diff = end - now;
+
+          if (diff <= 0) {
+            countdownEl.textContent = "Terminé";
+            return;
+          }
+          countdownEl.textContent = formatCountdown(diff);
+        };
+
+        tick();
+        setInterval(tick, 1000);
+      }
+
+      // --- PROBLEMS ---
+      function updateProblem(key) {
+        document.querySelectorAll(".problem-btn").forEach((btn) => {
+          btn.classList.remove("active-tab");
+          btn.classList.add("inactive-tab");
+          btn.classList.remove("bg-primary", "text-white", "border-primary");
+        });
+
+        const activeBtn = document.getElementById(`btn-${key}`);
+        activeBtn.classList.remove("inactive-tab");
+        activeBtn.classList.add("active-tab");
+
+        const contentDiv = document.getElementById("problem-content");
+        contentDiv.style.opacity = "0";
+
+        setTimeout(() => {
+          const data = problems[key];
+          contentDiv.innerHTML = `
+            <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-8">
+              <div class="text-6xl bg-white p-6 rounded-full shadow-lg">${data.icon}</div>
+              <div>
+                <h3 class="font-serif text-2xl font-bold text-primary mb-3">${data.title}</h3>
+                <p class="text-gray-700 text-lg leading-relaxed mb-4">${data.text}</p>
+                <div class="inline-block bg-primary/10 text-primary font-bold px-4 py-2 rounded-lg text-sm">
+                  Ce que tu trouves dans le guide : ${data.solution}
+                </div>
+              </div>
+            </div>
+          `;
+          contentDiv.style.opacity = "1";
+        }, 250);
+      }
+
+      // --- CHART: calories split ---
+      function caloriesSplit(macros) {
+        const p = macros.protein * 4;
+        const c = macros.carbs * 4;
+        const f = macros.fat * 9;
+        return { p, c, f, total: p + c + f };
+      }
+
+      function initChart() {
+        const ctx = document.getElementById("macroChart").getContext("2d");
+
+        chartInstance = new Chart(ctx, {
+          type: "doughnut",
+          data: {
+            labels: ["Protéines (kcal)", "Glucides (kcal)", "Lipides (kcal)"],
+            datasets: [
+              {
+                data: [0, 0, 0],
+                backgroundColor: ["#2D5A27", "#F0AD4E", "#D9534F"],
+                borderWidth: 0,
+                hoverOffset: 10,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "bottom",
+                labels: { font: { family: "Inter", size: 12 }, padding: 18 },
+              },
+              tooltip: {
+                callbacks: {
+                  label: function (context) {
+                    return ` ${context.label}: ${context.raw} kcal`;
+                  },
+                },
+              },
+            },
+            cutout: "70%",
+          },
+        });
+      }
+
+      function loadRecipeData(index) {
+        currentRecipeIndex = index;
+        const data = recipes[index];
+
+        document.getElementById("recipe-title").innerText = data.title;
+        document.getElementById("recipe-desc").innerText = data.desc;
+        document.getElementById("recipe-time").innerText =
+          `Préparation: ${data.time}`;
+
+        const animateValue = (id, start, end, duration, suffix) => {
+          const obj = document.getElementById(id);
+          let startTimestamp = null;
+
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min(
+              (timestamp - startTimestamp) / duration,
+              1,
+            );
+            obj.innerHTML =
+              Math.floor(progress * (end - start) + start) + (suffix || "");
+            if (progress < 1) window.requestAnimationFrame(step);
+          };
+
+          window.requestAnimationFrame(step);
+        };
+
+        animateValue("val-cals", 0, data.cals, 450, "");
+        animateValue("val-protein", 0, data.macros.protein, 450, "g");
+        animateValue("val-carbs", 0, data.macros.carbs, 450, "g");
+        animateValue("val-fat", 0, data.macros.fat, 450, "g");
+        animateValue("val-fiber", 0, data.macros.fiber, 450, "g");
+
+        document.querySelectorAll(".recipe-selector").forEach((el, idx) => {
+          if (idx === index) {
+            el.classList.add("border-primary", "bg-gray-50");
+            el.classList.remove("border-transparent", "bg-white");
+          } else {
+            el.classList.remove("border-primary", "bg-gray-50");
+            el.classList.add("border-transparent", "bg-white");
+          }
+        });
+
+        const split = caloriesSplit(data.macros);
+        if (chartInstance) {
+          chartInstance.data.datasets[0].data = [split.p, split.c, split.f];
+          chartInstance.update();
+        }
+      }
+
+      // --- TESTIMONIALS ---
+      function renderTestimonial() {
+        const container = document.getElementById("testimonial-container");
+        const data = testimonials[currentTestimonialIndex];
+
+        container.classList.remove("fade-in");
+        void container.offsetWidth;
+        container.classList.add("fade-in");
+
+        container.innerHTML = `
+          <p class="text-xl md:text-2xl text-gray-700 font-serif italic mb-6 leading-relaxed">"${data.quote}"</p>
+          <div class="flex items-center justify-center gap-3">
+            <span class="text-2xl bg-gray-100 p-2 rounded-full">${data.img}</span>
+            <div class="text-left">
+              <div class="font-bold text-accent">${data.name}</div>
+              <div class="text-xs text-primary font-semibold uppercase tracking-wide">${data.role}</div>
+            </div>
+          </div>
+        `;
+
+        const dotsContainer = document.getElementById("testimonial-dots");
+        dotsContainer.innerHTML = testimonials
+          .map(
+            (_, idx) => `
+              <button onclick="goToTestimonial(${idx})"
+                aria-label="Aller au témoignage ${idx + 1}"
+                class="w-2 h-2 rounded-full transition-all duration-300 ${
+                  idx === currentTestimonialIndex
+                    ? "bg-primary w-6"
+                    : "bg-gray-300"
+                }"></button>
+            `,
+          )
+          .join("");
+      }
+
+      function nextTestimonial() {
+        currentTestimonialIndex =
+          (currentTestimonialIndex + 1) % testimonials.length;
+        renderTestimonial();
+      }
+
+      function prevTestimonial() {
+        currentTestimonialIndex =
+          (currentTestimonialIndex - 1 + testimonials.length) %
+          testimonials.length;
+        renderTestimonial();
+      }
+
+      function goToTestimonial(index) {
+        currentTestimonialIndex = index;
+        renderTestimonial();
+      }
+
+      // --- INIT ---
+      window.addEventListener("DOMContentLoaded", () => {
+        // checkout link
+        const checkoutLink = document.getElementById("checkout-link");
+        checkoutLink.href = CHECKOUT_URL;
+
+        // deadlines label (simple display)
+        // Tu peux adapter le texte comme tu veux.
+        const label1 = document.getElementById("deadline-label");
+        const label2 = document.getElementById("deadline-label-2");
+        if (label1 && label2) {
+          // Laisse tel quel si tu préfères éditer en dur dans le HTML.
+          // Ici on ne force pas un formatage complexe.
+        }
+
+        // init problems
+        updateProblem("cale");
+
+        // init chart + first recipe
+        initChart();
+        loadRecipeData(0);
+
+        // testimonials
+        renderTestimonial();
+        let rotator = setInterval(nextTestimonial, 6000);
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) clearInterval(rotator);
+          else rotator = setInterval(nextTestimonial, 6000);
+        });
+
+        // countdown
+        startCountdown();
+      });
+    </script>
+  </body>
+</html>
